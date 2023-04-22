@@ -1,6 +1,7 @@
 export { Observable } from './internal/Observable'
 
 export { Subject } from './internal/Subject'
+export { BehaviorSubject } from './internal/BehaviorSubject'
 
 export { of } from './internal/observable/of'
 export { from } from './internal/observable/from'

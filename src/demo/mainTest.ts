@@ -1,36 +1,20 @@
-import { selfMain } from './self'
-import { asyncScheduler, Observable, observeOn } from '../originRxjs'
+import selfTest from './selfTest'
+import { BehaviorSubject } from '../originRxjs'
 
 function demoMain() {
-  const observable = new Observable((observer) => {
-    observer.next(1)
-    observer.next(2)
-    observer.next(3)
-    observer.complete()
-  }).pipe(observeOn(asyncScheduler))
+  const behaviorSubject = new BehaviorSubject<number>(10)
 
-  console.log('just before subscribe')
-  observable.subscribe({
-    next(x) {
-      console.log('got value ' + x)
-    },
-    error(err) {
-      console.error('something wrong occurred: ' + err)
-    },
-    complete() {
-      console.log('done')
+  behaviorSubject.subscribe({
+    next(val) {
+      console.log('main val:', val)
     },
   })
-  console.log('just after subscribe')
-}
 
-function showLine() {
-  console.log('=================')
+  behaviorSubject.next(20)
 }
 
 export function main() {
-  // demoMain()
-  showLine()
+  demoMain()
 
-  selfMain()
+  selfTest()
 }
