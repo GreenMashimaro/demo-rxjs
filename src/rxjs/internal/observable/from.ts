@@ -5,7 +5,7 @@ export function from<T>(array: T[]) {
   return fromArrayLike(array)
 }
 
-export function fromArrayLike<T>(array: ArrayLike<T>) {
+export function fromArrayLike<T>(array: ArrayLike<T>): Observable<T> {
   return new Observable((subscriber: Subscriber<T>) => {
     subscribeToArray(array, subscriber)
   })

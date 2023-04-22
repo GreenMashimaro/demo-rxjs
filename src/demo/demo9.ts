@@ -1,7 +1,6 @@
-import { selfMain } from './self'
-import { asyncScheduler, Observable, observeOn } from '../originRxjs'
+import { asyncScheduler, Observable, observeOn } from '../rxjs'
 
-function demoMain() {
+export default function () {
   const observable = new Observable((observer) => {
     observer.next(1)
     observer.next(2)
@@ -9,7 +8,7 @@ function demoMain() {
     observer.complete()
   }).pipe(observeOn(asyncScheduler))
 
-  console.log('just before subscribe')
+  console.log('just before subscribe 33')
   observable.subscribe({
     next(x) {
       console.log('got value ' + x)
@@ -22,15 +21,4 @@ function demoMain() {
     },
   })
   console.log('just after subscribe')
-}
-
-function showLine() {
-  console.log('=================')
-}
-
-export function main() {
-  // demoMain()
-  showLine()
-
-  selfMain()
 }

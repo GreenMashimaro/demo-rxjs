@@ -22,7 +22,7 @@ export class Subject<T> extends Observable<T> implements SubscriptionLike {
   }
 
   public unsubscribe(): void {
-    throw new Error('Method not implemented.')
+    throw new Error('Method not implemented 1.')
   }
 
   public next(value: T) {

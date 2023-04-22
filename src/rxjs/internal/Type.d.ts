@@ -29,7 +29,29 @@ export interface UnaryFunction<T, R> {
 }
 
 export type OperatorFunction<T, R> = UnaryFunction<Observable<T>, Observable<R>>
+export type MonoTypeOperatorFunction<T> = OperatorFunction<T, T>
 
 export interface SubscriptionLike extends Unsubscribable {
   readonly closed: boolean
+}
+
+export interface SchedulerAction<T> extends Subscription {
+  schedule(state?: T, delay?: number): Subscription
+}
+
+export interface SchedulerLike extends TimestampProvider {
+  schedule<T>(
+    work: (this: SchedulerAction<T>, state: T) => void,
+    delay: number,
+    state?: T
+  ): Subscription
+  schedule<T>(
+    work: (this: SchedulerAction<T>, state: T) => void,
+    delay: number,
+    state: T
+  ): Subscription
+}
+
+export interface TimestampProvider {
+  now(): number
 }
